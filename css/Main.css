@@ -1,0 +1,59 @@
+.wrap {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  padding: 24px 0;
+  margin: 0 auto;
+}
+.shape {
+  position: absolute;
+  z-index: -1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 30%;
+  padding: 30% 0;
+}
+
+.text {
+  opacity: 0.6;
+  background-color: white;
+  border-radius: 25%;
+  height: 100%;
+  align-content: center;
+  text-align: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1em;
+  margin-top: 10%;
+}
+
+.item {
+  width: 100%;
+  box-shadow: 1px 1px 1px #ccc;
+}
+
+.text span {
+    position: relative;
+    color: black;
+    border-radius: 50%;
+    margin: 0 auto;
+    font-size: 42px;
+    font-weight: 600;
+    font-family: monospace;
+    line-height: 1;
+    text-align: center;
+}
+
+.btn {
+  padding: 0 46px;
+  height: 20px;
+  margin: 0 auto;
+  display: block;
+}
