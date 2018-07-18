@@ -2,6 +2,7 @@ module Main exposing (..)
 
 import Dict exposing (..)
 import Maybe exposing (..)
+import String exposing (..)
 import Html.Attributes exposing (..)
 import Html exposing (..)
 import Html.Events exposing (onClick)
@@ -119,7 +120,7 @@ diceRng m =
 
 
 whateverToInt whatever =
-    String.toInt <| toString whatever
+    String.toInt <| toString <| whatever
 
 
 rngSeed : Seed
@@ -128,53 +129,13 @@ rngSeed =
 
 
 rollEm msg =
-    step ( rngSeed, diceRng <| whateverToInt msg )
-
+    Random.step ( rngSeed, diceRng <| whateverToInt msg )
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        --Dict.update in roll you can do it in 1!!!!
         Roll ->
-            ( Dict.update (whateverToInt <| msg) (\_ -> rollEm msg) model, Cmd.none )
-
-
-
--- RollFour ->
---     ( model, Random.generate UpdateFour (Random.int 1 4) )
---
--- UpdateFour val ->
---     ( { model | four = val }, Cmd.none )
---
--- RollSix ->
---     ( model, Random.generate UpdateSix (Random.int 1 6) )
---
--- UpdateSix val ->
---     ( { model | six = val }, Cmd.none )
---
--- RollEight ->
---     ( model, Random.generate UpdateEight (Random.int 1 8) )
---
--- UpdateEight val ->
---     ( { model | eight = val }, Cmd.none )
---
--- RollTen ->
---     ( model, Random.generate UpdateTen (Random.int 1 10) )
---
--- UpdateTen val ->
---     ( { model | ten = val }, Cmd.none )
---
--- RollTwelve ->
---     ( model, Random.generate UpdateTwelve (Random.int 1 12) )
---
--- UpdateTwelve val ->
---     ( { model | twelve = val }, Cmd.none )
---
--- RollTwenty ->
---     ( model, Random.generate UpdateTwenty (Random.int 1 20) )
---
--- UpdateTwenty val ->
---     ( { model | twenty = val }, Cmd.none )
+            ( Dict.update ((whateverToInt <| msg), (\_ -> rollEm msg), model), Cmd.none )
 
 
 getDiceFace model n =
